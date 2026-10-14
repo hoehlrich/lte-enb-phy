@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [debug, release]
+        compiler:
+          - { cc: gcc, cxx: g++ }
+          - { cc: clang, cxx: clang++ }
+    name: ${{ matrix.compiler.cc }} / ${{ matrix.preset }}
+    env:
+      CC: ${{ matrix.compiler.cc }}
+      CXX: ${{ matrix.compiler.cxx }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install dependencies
+        # libclang-rt-18-dev: Clang's ASan/UBSan runtimes (not always preinstalled)
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libfftw3-dev libclang-rt-18-dev
+      - name: Configure, build, test
+        run: cmake --workflow --preset ${{ matrix.preset }}

@@ -1,0 +1,14 @@
+# Build output
+/build/
+/results/
+
+# Specs and papers: free to download, not ours to redistribute
+/resources/
+
+# Tooling
+/compile_commands.json
+/.cache/
+
+# MATLAB
+*.asv
+*.mex*
