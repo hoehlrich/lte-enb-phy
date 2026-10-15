@@ -22,8 +22,5 @@ cmake --workflow --preset release   # optimized, for sweeps
 src/lte/     the library: common, ofdm, mod, coding, ul, dl, rx
 sim/         test-bench channel: AWGN, frequency offset, timing offset
 apps/        sweep drivers and hardware tools
-tests/       unit tests against golden vectors
-matlab/      LTE Toolbox models that generate the vectors
-vectors/     committed golden vectors (.bin + .json)
 scripts/     plotting
 ```

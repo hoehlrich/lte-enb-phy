@@ -1,0 +1,14 @@
+{
+  "format": 1,
+  "dtype": "cf32",
+  "shape": [
+    2,
+    2
+  ],
+  "generator": "matlab/gen_roundtrip.m",
+  "matlab": "25.2.0.3150157 (R2025b) Update 4",
+  "lte_toolbox": "25.2",
+  "config": {
+    "note": "2x2, column-major"
+  }
+}
