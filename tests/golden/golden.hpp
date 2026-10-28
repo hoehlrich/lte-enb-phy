@@ -3,9 +3,10 @@
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
-#include <nlohmann/json.hpp>
 #include <string_view>
 #include <vector>
+
+#include <nlohmann/json.hpp>
 
 #include "lte/common/types.hpp"
 
@@ -44,7 +45,7 @@ namespace detail {
 // that the stored dtype matches, and that the byte count matches the shape.
 // Throws std::runtime_error naming the vector if any check fails.
 std::vector<std::byte> read(std::string_view name, std::string_view dtype, std::size_t elem_size,
-                            nlohmann::json& meta);
+                            nlohmann::json &meta);
 }  // namespace detail
 
 // golden::load<lte::cf32>("ofdm_mod/cell0_grid")

@@ -1,11 +1,11 @@
 // Round trip: matlab/gen_roundtrip.m writes known values, this reads them back.
 #include "golden/golden.hpp"
 
-#include <gtest/gtest.h>
-
 #include <cstdint>
 #include <stdexcept>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 TEST(Golden, LoadsBits) {
     const auto v = golden::load<std::uint8_t>("roundtrip/bits");

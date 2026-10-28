@@ -1,16 +1,16 @@
 // The comparison helpers, tested by feeding them data that should fail.
 #include "golden/compare.hpp"
 
-#include <gtest/gtest.h>
-
 #include <cstdint>
 #include <limits>
 #include <string>
 #include <vector>
 
+#include <gtest/gtest.h>
+
 namespace {
 
-bool mentions(const ::testing::AssertionResult& r, const std::string& text) {
+bool mentions(const ::testing::AssertionResult &r, const std::string &text) {
     return std::string(r.message()).find(text) != std::string::npos;
 }
 

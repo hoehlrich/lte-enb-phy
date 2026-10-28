@@ -1,4 +1,25 @@
+# lte-enb-phy: Google style with 4-space indents and 100 columns.
+# Every option here exists in clang-format 18 (Ubuntu 24.04, the CI runner).
+Language: Cpp
 BasedOnStyle: Google
+Standard: c++20
 IndentWidth: 4
 ColumnLimit: 100
 AccessModifierOffset: -4
+
+# Pin choices Google would otherwise guess from each file's existing code.
+DerivePointerAlignment: false
+PointerAlignment: Right
+
+# Includes: the file's own header first, then the C++ standard library,
+# then third-party (GoogleTest, FFTW, nlohmann), then this project.
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[a-z_]+>$'   # <cmath>, <span>
+    Priority: 1
+  - Regex: '^<'            # <gtest/gtest.h>, <fftw3.h>, <nlohmann/json.hpp>
+    Priority: 2
+  - Regex: '^"'            # "lte/...", "golden/..."
+    Priority: 3
+
+InsertNewlineAtEOF: true

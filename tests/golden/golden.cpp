@@ -17,14 +17,14 @@ static_assert(sizeof(lte::cf32) == 2 * sizeof(float));
 namespace golden::detail {
 namespace {
 
-[[noreturn]] void fail(const std::filesystem::path& base, const std::string& why) {
+[[noreturn]] void fail(const std::filesystem::path &base, const std::string &why) {
     throw std::runtime_error("golden vector " + base.string() + ": " + why);
 }
 
 }  // namespace
 
-std::vector<std::byte> read(std::string_view name, std::string_view dtype,
-                            std::size_t elem_size, nlohmann::json& meta) {
+std::vector<std::byte> read(std::string_view name, std::string_view dtype, std::size_t elem_size,
+                            nlohmann::json &meta) {
     // LTE_VECTOR_DIR is set by CMake to the repo's vectors/ directory.
     const std::filesystem::path base = std::filesystem::path(LTE_VECTOR_DIR) / name;
     std::filesystem::path json_path = base;
@@ -62,7 +62,7 @@ std::vector<std::byte> read(std::string_view name, std::string_view dtype,
     }
 
     std::vector<std::byte> bytes(expected);
-    bin_file.read(reinterpret_cast<char*>(bytes.data()), static_cast<std::streamsize>(expected));
+    bin_file.read(reinterpret_cast<char *>(bytes.data()), static_cast<std::streamsize>(expected));
     return bytes;
 }
 

@@ -65,7 +65,7 @@ template <typename T>
 
     const auto n = static_cast<double>(expected.size());
     double ref_power = 0.0;
-    for (const T& e : expected) {
+    for (const T &e : expected) {
         ref_power += std::norm(widen(e));
     }
     const double ref_rms = std::sqrt(ref_power / n);
