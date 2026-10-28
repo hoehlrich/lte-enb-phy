@@ -1,0 +1,12 @@
+{
+  "format": 1,
+  "dtype": "cf32",
+  "shape": [
+    512,
+    1
+  ],
+  "generator": "matlab/gen_qpsk.m",
+  "matlab": "25.2.0.3150157 (R2025b) Update 4",
+  "lte_toolbox": "25.2",
+  "config": {}
+}
