@@ -2,8 +2,11 @@
 
 #include <cmath>
 #include <cstddef>
+#include <cstdint>
+#include <span>
 
 #include "lte/common/contract.hpp"
+#include "lte/common/types.hpp"
 
 // QPSK modulation mapper, 36.211 §7.1.2
 // Precondition: bits.size() == 2 * out.size(), and every bit is 0 or 1
