@@ -9,5 +9,3 @@ Requires CMake ≥ 3.25, Ninja, FFTW (single precision), and GCC or Clang.
 ```sh
 cmake --workflow --preset debug     # ASan + UBSan, for correctness
 cmake --workflow --preset release   # optimized, for sweeps
-```
-```
