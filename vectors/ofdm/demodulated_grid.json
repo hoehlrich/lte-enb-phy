@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "dtype": "cf32",
+  "shape": [
+    72,
+    14
+  ],
+  "generator": "matlab/gen_ofdm.m",
+  "matlab": "25.2.0.3150157 (R2025b) Update 4",
+  "lte_toolbox": "25.2",
+  "config": {
+    "NDLRB": 6,
+    "CyclicPrefix": "Normal",
+    "CellRefP": 1,
+    "Windowing": 0
+  }
+}

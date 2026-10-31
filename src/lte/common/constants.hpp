@@ -17,10 +17,13 @@ inline constexpr std::size_t kSymbolsPerSubframe = 2 * kSymbolsPerSlot;
 inline constexpr std::size_t kSpecFftSize = 2048;  // N in §6.12
 inline constexpr std::size_t kFftSize = 128;
 inline constexpr std::size_t kTsPerSample = kSpecFftSize / kFftSize;  // 16
-inline constexpr std::size_t kHalfSubcarriers = kNumSubcarriers / 2; // N_RB^DL N_SC^RB / 2
+inline constexpr std::size_t kHalfSubcarriers = kNumSubcarriers / 2;  // N_RB^DL N_SC^RB / 2
 
 inline constexpr std::size_t kCpLengthFirst = 160 / kTsPerSample;  // N_CP,0 = 160
 inline constexpr std::size_t kCpLengthOther = 144 / kTsPerSample;  // N_CP,l = 144
+inline constexpr std::size_t cp_length(std::size_t l) {
+    return (l % kSymbolsPerSlot == 0) ? kCpLengthFirst : kCpLengthOther;
+}
 
 inline constexpr std::size_t kSamplesPerSlot =
     (kCpLengthFirst + kFftSize) + (kSymbolsPerSlot - 1) * (kCpLengthOther + kFftSize);

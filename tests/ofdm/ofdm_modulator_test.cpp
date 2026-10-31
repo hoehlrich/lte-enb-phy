@@ -32,7 +32,7 @@ std::size_t symbol_start(std::size_t l) {
 }  // namespace
 
 // The whole subframe against lteOFDMModulate (gen_ofdm.m: random QPSK grid, Windowing = 0).
-TEST(Ofdm, MatchesLteOFDMModulate) {
+TEST(OfdmModulator, MatchesLteOFDMModulate) {
     const auto grid_ref = golden::load<lte::cf32>("ofdm/resource_grid");
     const auto samples_ref = golden::load<lte::cf32>("ofdm/samples");
 
@@ -60,7 +60,7 @@ TEST(Ofdm, MatchesLteOFDMModulate) {
 // scaling, symbol 0 must be a single tone rotating +2*pi/128 per sample across its cyclic
 // prefix and body, and every other symbol must be silent. If MatchesLteOFDMModulate fails
 // but this passes, look at scaling; if this fails, look at bin mapping or the cyclic prefix.
-TEST(Ofdm, SingleSubcarrierIsOneTone) {
+TEST(OfdmModulator, SingleSubcarrierIsOneTone) {
     lte::ResourceGrid grid{};
     grid.symbol(0)[lte::kHalfSubcarriers] = {1.0f, 0.0f};
 
@@ -86,7 +86,7 @@ TEST(Ofdm, SingleSubcarrierIsOneTone) {
 
 // Diagnostic: cyclic prefix lengths. Symbol l's prefix must repeat the last N_CP samples
 // of its body: 10 for symbols 0 and 7, 9 for the rest.
-TEST(Ofdm, CyclicPrefixRepeatsSymbolTail) {
+TEST(OfdmModulator, CyclicPrefixRepeatsSymbolTail) {
     const auto grid_ref = golden::load<lte::cf32>("ofdm/resource_grid");
     lte::ResourceGrid grid{};
     const std::span<const lte::cf32> flat = grid_ref.data;
@@ -109,7 +109,7 @@ TEST(Ofdm, CyclicPrefixRepeatsSymbolTail) {
     }
 }
 
-TEST(OfdmDeathTest, WrongOutputSizeAborts) {
+TEST(OfdmModulatorDeathTest, WrongOutputSizeAborts) {
     lte::ResourceGrid grid{};
     lte::OfdmModulator mod;
     std::vector<lte::cf32> out(lte::kSamplesPerSubframe - 1);

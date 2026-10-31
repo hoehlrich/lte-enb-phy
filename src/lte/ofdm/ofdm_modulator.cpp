@@ -27,14 +27,15 @@ void lte::OfdmModulator::modulate(const ResourceGrid &grid, std::span<cf32> out)
     const auto scale = [](cf32 x) { return x * kIfftScale; };
     for (std::size_t l = 0; l < kSymbolsPerSubframe; ++l) {
         // Move resource elements into their corresponding FFT bins
-        std::ranges::transform(grid.symbol(l).subspan(0, kHalfSubcarriers),
+        const std::span<const cf32> sym = grid.symbol(l);
+        std::ranges::transform(sym.subspan(0, kHalfSubcarriers),
                                ifft_.in().subspan(kFftSize - kHalfSubcarriers).begin(), scale);
-        std::ranges::transform(grid.symbol(l).subspan(kHalfSubcarriers, kHalfSubcarriers),
+        std::ranges::transform(sym.subspan(kHalfSubcarriers, kHalfSubcarriers),
                                ifft_.in().subspan(1).begin(), scale);
         ifft_.execute();
 
         // Move into time domain output and add cyclic prefix
-        const std::size_t cp = (l % kSymbolsPerSlot == 0) ? kCpLengthFirst : kCpLengthOther;
+        const std::size_t cp = cp_length(l);
         std::ranges::copy(ifft_.out(), out.subspan(symbol_start + cp).begin());
         std::ranges::copy(ifft_.out().subspan(kFftSize - cp, cp),
                           out.subspan(symbol_start).begin());
