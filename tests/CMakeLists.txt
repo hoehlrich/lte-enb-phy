@@ -40,3 +40,7 @@ lte_add_test(compare_test golden/compare_test.cpp)
 lte_add_test(qpsk_test mod/qpsk_test.cpp)
 lte_add_test(resource_grid_test common/resource_grid_test.cpp)
 lte_add_test(ofdm_test ofdm/ofdm_test.cpp)
+lte_add_test(db_test common/db_test.cpp)
+
+lte_add_test(awgn_test sim/awgn_test.cpp)
+target_link_libraries(awgn_test PRIVATE ltesim)

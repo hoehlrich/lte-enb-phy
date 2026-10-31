@@ -15,6 +15,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFTW3F REQUIRED IMPORTED_TARGET fftw3f)
 
 add_subdirectory(src)
+add_subdirectory(sim)
 
 enable_testing()
 add_subdirectory(tests)
