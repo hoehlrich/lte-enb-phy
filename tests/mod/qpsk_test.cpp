@@ -1,9 +1,11 @@
 #include "lte/mod/qpsk.hpp"
 
 #include <vector>
+#include <cstdint>
 
 #include <gtest/gtest.h>
 
+#include "lte/common/types.hpp"
 #include "golden/compare.hpp"
 #include "golden/golden.hpp"
 
