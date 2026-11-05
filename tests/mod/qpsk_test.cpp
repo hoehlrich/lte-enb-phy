@@ -1,15 +1,15 @@
 #include "lte/mod/qpsk.hpp"
 
-#include <vector>
 #include <cstdint>
+#include <vector>
 
 #include <gtest/gtest.h>
 
-#include "lte/common/types.hpp"
 #include "golden/compare.hpp"
 #include "golden/golden.hpp"
+#include "lte/common/types.hpp"
 
-TEST(Qpsk, MatchesLteSymbolModulate) {
+TEST(QpskMap, MatchesLteSymbolModulate) {
     const auto bits = golden::load<std::uint8_t>("mod/qpsk_bits");
     const auto ref = golden::load<lte::cf32>("mod/qpsk_symbols");
 
