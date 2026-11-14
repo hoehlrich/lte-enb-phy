@@ -12,3 +12,6 @@
 # MATLAB
 *.asv
 *.mex*
+
+# Scratch
+results/scratch/
