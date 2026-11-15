@@ -49,7 +49,7 @@ TEST(MeasureBer, MatchesQpskTheoryAt6dB) {
 
     ASSERT_GE(count.errors, 2000u) << "hit max_bits before min_errors";
     const double ber = static_cast<double>(count.errors) / static_cast<double>(count.bits);
-    const double theory = qpsk_ber_theory(kSnrDb);
+    const double theory = qpsk_ber_theory(static_cast<double>(kSnrDb));
     EXPECT_NEAR(ber / theory, 1.0, 0.10) << "measured " << ber << ", theory " << theory;
 }
 
