@@ -46,6 +46,10 @@ lte_add_test(qpsk_demap_test mod/qpsk_demap_test.cpp)
 
 lte_add_test(awgn_test sim/awgn_test.cpp)
 lte_add_test(measure_ber_test sim/measure_ber_test.cpp)
+lte_add_test(carrier_frequency_offset_test sim/carrier_frequency_offset_test.cpp)
+lte_add_test(integer_delay_test sim/integer_delay_test.cpp)
 
 target_link_libraries(awgn_test PRIVATE ltesim)
 target_link_libraries(measure_ber_test PRIVATE ltesim)
+target_link_libraries(carrier_frequency_offset_test PRIVATE ltesim)
+target_link_libraries(integer_delay_test PRIVATE ltesim)

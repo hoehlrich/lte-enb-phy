@@ -4,6 +4,8 @@ add_library(ltesim STATIC
     lte/sim/awgn.cpp
     lte/sim/thin_slice_link.cpp
     lte/sim/measure_ber.cpp
+    lte/sim/carrier_frequency_offset.cpp
+    lte/sim/integer_delay.cpp
 )
 target_include_directories(ltesim PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(ltesim PUBLIC ltephy)
