@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "dtype": "u8",
+  "shape": [
+    6120,
+    1
+  ],
+  "generator": "matlab/gen_crc.m",
+  "matlab": "25.2.0.3150157 (R2025b) Update 4",
+  "lte_toolbox": "25.2",
+  "config": {
+    "poly": "24A",
+    "length": 6120,
+    "parity_bits": 24
+  }
+}
