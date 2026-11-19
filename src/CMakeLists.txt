@@ -3,6 +3,7 @@ add_library(ltephy STATIC
     lte/mod/qpsk.cpp
     lte/ofdm/ofdm_modulator.cpp
     lte/ofdm/ofdm_demodulator.cpp
+    lte/coding/crc.cpp
 )
 
 target_include_directories(ltephy PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

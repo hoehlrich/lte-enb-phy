@@ -50,26 +50,40 @@ static_assert(kCrc8Table[0] == 0);
 static_assert(kCrc8Table[1] == kCrc8Poly);
 static_assert(kCrc8Table[3] == (kCrc8Table[1] ^ kCrc8Table[2]));
 
-}  // namespace
-
-void lte::crc8(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity) {
-    LTE_EXPECTS(parity.size() == 8);
+void crc(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity,
+         std::size_t parity_bits, std::span<const std::uint32_t, kTableSize> table) {
+    LTE_EXPECTS(parity.size() == parity_bits);
     LTE_EXPECTS(bits.size() % 8 == 0);
 
     std::uint32_t r = 0;
     for (std::size_t i = 0; i < bits.size() / 8; ++i) {
-        std::uint8_t message_byte = bits[i * 8];
-        LTE_EXPECTS(message_byte == 0 || message_byte == 1);
-        for (std::size_t j = 1; j < 8; ++j) {
-            message_byte = static_cast<std::unit8_t>(message_byte << 1);
+        std::uint8_t message_byte = 0;
+        for (std::size_t j = 0; j < 8; ++j) {
+            message_byte = static_cast<std::uint8_t>(message_byte << 1);
             std::uint8_t bit = bits[i * 8 + j];
             LTE_EXPECTS(bit == 0 || bit == 1);
             message_byte |= bit;
         }
-        r = (r << 8) ^ kCrc8Table[(r >> 24) ^ message_byte];
+        r = (r << 8) ^ table[(r >> 24) ^ message_byte];
     }
 
-    for (std::size_t i = 0; i < 8; ++i)
+    for (std::size_t i = 0; i < parity_bits; ++i)
         parity[i] = static_cast<std::uint8_t>((r << i) >> 31);
 }
 
+}  // namespace
+
+void lte::crc8(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity) {
+    crc(bits, parity, 8, kCrc8Table);
+}
+
+void lte::crc16(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity) {
+    crc(bits, parity, 16, kCrc16Table);
+}
+
+void lte::crc24a(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity) {
+    crc(bits, parity, 24, kCrc24aTable);
+}
+void lte::crc24b(std::span<const std::uint8_t> bits, std::span<std::uint8_t> parity) {
+    crc(bits, parity, 24, kCrc24bTable);
+}

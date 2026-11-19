@@ -43,6 +43,7 @@ lte_add_test(ofdm_modulator_test ofdm/ofdm_modulator_test.cpp)
 lte_add_test(db_test common/db_test.cpp)
 lte_add_test(ofdm_demodulator_test ofdm/ofdm_demodulator_test.cpp)
 lte_add_test(qpsk_demap_test mod/qpsk_demap_test.cpp)
+lte_add_test(crc_test coding/crc_test.cpp)
 
 lte_add_test(awgn_test sim/awgn_test.cpp)
 lte_add_test(measure_ber_test sim/measure_ber_test.cpp)
